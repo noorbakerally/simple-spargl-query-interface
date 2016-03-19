@@ -91,7 +91,7 @@ font-weight: normal;
 font-size: 10pt;
 }
 fieldset label.ckb:after { content: ""; }
-fieldset textarea {
+fieldset textarea,.bigtextarea {
 width: 99%;
 font-family: monospace;
 font-size: 10pt;
@@ -113,7 +113,8 @@ br { clear: both; }
 /*]]>*/
 </style>
 
-   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+   <script src="script.js"></script>
 </head>
 <body>
     <div id="header">
@@ -127,12 +128,11 @@ br { clear: both; }
 
     <div id="main">
     <br>
-	<form action="" method="get">
 	<fieldset>
 		<label for="query">Query Text</label><br>
-		<textarea rows="18" cols="80" name="query" id="query" onchange="format_select(this)" onkeyup="format_select(this)">BASE <http://example.org/> &#13;PREFIX rqg-ite: <http://w3id.org/sparql-generate/ite/>&#13;PREFIX rqg-fn: <http://w3id.org/sparql-generate/fn/>&#13;PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>&#13;GENERATE { [] rdfs:label ?body . }&#13;SOURCE <http://www.pdfconvertonline.com/htm-to-jpg-online.html> AS ?source &#13;ITERATOR rqg-ite:CSSPath(?source, "title") AS ?body &#13;WHERE { &#13; BIND(rqg-fn:HTMLTag(?body, "title") AS ?title ) &#13;}</textarea>
+		<textarea rows="18" cols="80" name="query" id="query">BASE <http://example.org/> &#13;PREFIX rqg-ite: <http://w3id.org/sparql-generate/ite/>&#13;PREFIX rqg-fn: <http://w3id.org/sparql-generate/fn/>&#13;PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>&#13;GENERATE { [] rdfs:label ?body . }&#13;SOURCE <http://www.pdfconvertonline.com/htm-to-jpg-online.html> AS ?source &#13;ITERATOR rqg-ite:CSSPath(?source, "title") AS ?body &#13;WHERE { &#13; BIND(rqg-fn:HTMLTag(?body, "title") AS ?title ) &#13;}</textarea>
 		<label for="format" class="n">Results Format</label>
-		<select name="format" id="format" onchange="format_change(this)">
+		<select name="format" id="format">
 			<option value="TTL" selected="selected">Turtle</option>
 			<option value="RDFXML">RDF/XML</option>
 			<option value="N3">N3</option>
@@ -140,13 +140,17 @@ br { clear: both; }
 		</select>
 		
 		<br>
-		<input type="submit" value="Run Query">
-		<input type="reset" value="Reset">
+		<button onClick="generate()">Run Query</button>
+		<button onClick="reset()">Reset</button>
+
+		<br/><strong>Results</strong>
+	    <textarea id="result" rows="18" cols="80" class="bigtextarea">
+
+	    </textarea>
 	</fieldset>
-	</form>
     </div>
 
-    
+
     
 
 
