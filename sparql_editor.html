@@ -143,10 +143,18 @@ br { clear: both; }
 		<button onClick="generate()">Run Query</button>
 		<button onClick="reset()">Reset</button>
 
-		<br/><strong>Results</strong>
-	    <textarea id="result" rows="18" cols="80" class="bigtextarea">
+		<div id="results" style="display:none">
+			<br/><strong>Results</strong>
+		    <textarea id="result" rows="18" cols="80" class="bigtextarea" >
 
-	    </textarea>
+		    </textarea>
+		</div>
+		<div id="loading" style="display:none">
+				<center>
+					<img src="images/loading.gif"/>
+				</center>
+		</div>
+
 	</fieldset>
     </div>
 
